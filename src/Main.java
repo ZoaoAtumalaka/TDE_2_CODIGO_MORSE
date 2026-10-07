@@ -1,4 +1,12 @@
+// =====================================================================================================
+// TDE DE RESOLUÇÃO DE PROBLEMAS -> CODIFICADOR/DECODIFICADOR DE CÓDIGO MORSE
+// ALUNOS: JOÃO KAUDY, GUSTAVO GAWLAK, LUCAS RETZLAFF
+// PROFESSOR: ARAMIS
+// =====================================================================================================
+
 import java.util.Scanner;
+
+// =====================================================================================================
 
 public class Main {
 
@@ -6,9 +14,10 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
+        Arvore arvore = new Arvore();
+
         System.out.println("========================================================");
         System.out.println("CODIFICADOR E DECODIGICADOR DE CÓDIGO MORSE USANDO ÁRVORE BINÁRIA");
-        System.out.println("por João Kaudy, Gustavo Gawlak, Não Sei mais que Da Silva");
         System.out.println("========================================================");
         System.out.println("Digite uma opção:");
         System.out.println("1. Codificar uma frase");
@@ -25,6 +34,7 @@ public class Main {
                 break;
             case 2:
                 System.out.println("Digite a sua frase ou palavra a ser decodificada");
+                String C = scanner.nextLine();
                 break;
         }
 
@@ -33,18 +43,20 @@ public class Main {
     }
 }
 
+// =====================================================================================================
+
 class Arvore {
 
     //ATRIBUTOS
     public No raiz;
 
+    //CONSTRUTOR
     public Arvore(){
         raiz = new No(' ');
         popularArvore();
     }
 
     //FUNCOES
-
     public void inserir(String codigo, char letra){
         No no_atual = raiz;
 
@@ -54,19 +66,21 @@ class Arvore {
 
             if(caractere == '.'){
 
+                //verifica se é nulo/vazio, se for, cria um novo nó e coloca na esquerda, mesmo se nao for, o nó atual vira o no da esquerda
                 if(no_atual.proximoEsquerda == null){
                     No no_novo = new No(' ');
                     no_atual.proximoEsquerda = no_novo;
-                    no_atual = no_novo;
                 }
+                no_atual = no_atual.proximoEsquerda;
 
             } else if (caractere == '-') {
 
-                if (no_atual.proximoDireita == null) {
+                //msm coisa so que na direita
+                if(no_atual.proximoDireita == null){
                     No no_novo = new No(' ');
                     no_atual.proximoDireita = no_novo;
-                    no_atual = no_novo;
                 }
+                no_atual = no_atual.proximoDireita;
 
             }
 
@@ -76,16 +90,77 @@ class Arvore {
     }
 
     private void popularArvore() {
+        // Letras
         inserir(".-", 'A');
         inserir("-...", 'B');
+        inserir("-.-.", 'C');
+        inserir("-..", 'D');
+        inserir(".", 'E');
+        inserir("..-.", 'F');
+        inserir("--.", 'G');
+        inserir("....", 'H');
+        inserir("..", 'I');
+        inserir(".---", 'J');
+        inserir("-.-", 'K');
+        inserir(".-..", 'L');
+        inserir("--", 'M');
+        inserir("-.", 'N');
+        inserir("---", 'O');
+        inserir(".--.", 'P');
+        inserir("--.-", 'Q');
+        inserir(".-.", 'R');
+        inserir("...", 'S');
+        inserir("-", 'T');
+        inserir("..-", 'U');
+        inserir("...-", 'V');
+        inserir(".--", 'W');
+        inserir("-..-", 'X');
+        inserir("-.--", 'Y');
+        inserir("--..", 'Z');
+
+        // Números
+        inserir(".----", '1');
+        inserir("..---", '2');
+        inserir("...--", '3');
+        inserir("....-", '4');
+        inserir(".....", '5');
+        inserir("-....", '6');
+        inserir("--...", '7');
+        inserir("---..", '8');
+        inserir("----.", '9');
+        inserir("-----", '0');
+    }
+}
+
+public void decodificar(String frase_decodificar){
+
+    String frase_traduzida = " ";
+    No no_atual = raiz;
+
+    for(int i = 0; i < frase_decodificar.length(); i++) {
+
+        char caractere = frase_decodificar.charAt(i);
+
+        if (caractere == '.') {
+            //
+        } else if (caractere == '-') {
+            //
+        } else if(caractere == ' '){
+            //
+        } else if(caractere =='/'){
+            frase_traduzida += " ";
+        } else {
+            System.out.println("Insira um código morse válido...");
+            break;
+        }
+
     }
 
 }
 
-public void decodificar(){
-    //decodificar as parada aqui
 }
-}
+
+// =====================================================================================================
 
 class No {
 
@@ -102,3 +177,5 @@ class No {
     }
 
 }
+
+// =====================================================================================================
