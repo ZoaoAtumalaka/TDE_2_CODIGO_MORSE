@@ -4,9 +4,9 @@
 // PROFESSOR: ARAMIS
 // =====================================================================================================
 
-import java.util.Scanner;
 import java.io.File;
 import java.io.FileWriter;
+import java.util.Scanner;
 
 // =====================================================================================================
 
@@ -29,6 +29,7 @@ public class Main {
             System.out.println("3. Codificar um arquivo de texto");
             System.out.println("4. Decodifciar um arquivo de texto");
             System.out.println("5. Exibir a árvore");
+            System.out.println("0. Encerrar o programa");
             System.out.println("========================================================");
 
             int A = scanner.nextInt();
@@ -126,6 +127,10 @@ public class Main {
 
                 default://RESPOSTA RUIM
                     System.out.println("Opção Inválida! Tente novamente");
+                case 0:
+                    System.out.println("Encerrando o programa..."); //
+                    scanner.close();
+                    return;
             }
 
         }
